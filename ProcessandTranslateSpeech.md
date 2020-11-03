@@ -30,8 +30,10 @@
 
 - Price model:
 
-  - The rules of pricing is quite complicated, so it is best to always check the web page before use.
+  - The rules of pricing is quite complicated, so it is best to always check the web page before use. This module is combined into bundle with many others.
 
+  - Free version - Standard (5 audio hours per month) - Custom (5 audio hours per month and 1 model free per month)
+  
     https://azure.microsoft.com/en-us/pricing/details/cognitive-services/speech-services/
 
 ## Synthesize Text Input to Speech
@@ -57,8 +59,10 @@
 
 - Price model:
 
-  - The rules of pricing is quite complicated, so it is best to always check the web page before use.
+  - The rules of pricing is quite complicated, so it is best to always check the web page before use. This module is combined into bundle with many others.
 
+  - Free version - Standard (5 million characters per month) - Neural (0.5 million characters per month) - Custom (5 million characters per month and 1 model per month)
+  
     https://azure.microsoft.com/en-us/pricing/details/cognitive-services/speech-services/
 
 ## Translate speech with the speech service
@@ -95,6 +99,8 @@
 
 - Price model:
 
-  - The rules of pricing is quite complicated, so it is best to always check the web page before use.
+  - The rules of pricing is quite complicated, so it is best to always check the web page before use.This module is combined into bundle with many others.
 
+  - Free version - Standard (5 hours of audio per month)
+  
     https://azure.microsoft.com/en-us/pricing/details/cognitive-services/speech-services/
