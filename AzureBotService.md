@@ -40,3 +40,35 @@
   - Standard - 3 transactions/second - 100 trans./minute - unlimited number of documents - 
 
     https://azure.microsoft.com/pl-pl/pricing/details/cognitive-services/qna-maker/
+
+## Bot Framework Composer
+
+### 1. Intro 
+
+- The Bot Framework Composer is a tool used for quick and easy build of sophisticated conversational bots. The gimmick is that one doesn't need to write code to deploy fully functional bot. The Composer is an open-source visual designer, the main part is the composer canvas on which one can design the bots. Thanks to connection to latest SDK all functionalities are implemented into designer.
+- Advantages of using Composer instead of SDK and coding:
+  - Adaptive Dialogs allow for Language Generation (LG), which can simplify interruption handling and give bots character.
+  - Visual design surface.
+  - Time saved with fewer steps to set up your environment.
+  - The Composer bot projects contain reusable assets in the form of JSON and Markdown files.
+
+### 2. Use Cases
+
+- Use cases are infinite, almost all standard customer service procedures can be changed into automated services:
+  - Shop help-desks,
+  - Making appointments,
+  - Medical preexaminations,
+  - Emergency help-desks.
+
+### 3. How to
+
+- How to:
+
+  - Before you can begin to work with the Bot Framework Composer, you will need to install the correct desktop application.
+  - To create the dialogue route one needs to create the diagram.
+  - Based on the diagram, bot can decide what kind of request to send (Weather, news etc.).
+  - The diagrams can be quite complicated, the language used is similar to UML.
+  - Later the additional functionalities can be added (Translation, help, cancel etc.)
+- Pricing model:
+  - Free - this is an open source tool.
+
