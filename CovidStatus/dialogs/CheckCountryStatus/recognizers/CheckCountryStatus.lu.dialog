@@ -1,0 +1,8 @@
+{
+  "$kind": "Microsoft.MultiLanguageRecognizer",
+  "id": "LUIS_CheckCountryStatus",
+  "recognizers": {
+    "en-us": "CheckCountryStatus.en-us.lu",
+    "": "CheckCountryStatus.en-us.lu"
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "CovidStatus.en-us": {
+    "rootDialog": true,
+    "triggers": {
+      "CheckCountry": [
+        "CheckCountryStatus.en-us"
+      ],
+      "Help": [
+        "Help.en-us"
+      ],
+      "RandomFact": [
+        "RandomFact.en-us"
+      ],
+      "CompareCountries": [
+        "CompareCountries.en-us"
+      ]
+    }
+  }
+}

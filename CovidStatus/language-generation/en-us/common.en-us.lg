@@ -1,0 +1,232 @@
+# WelcomeUser()
+- Welcome to the Covid Bot, you can either ask for my assistance in your first questions or if you are familiar with me, try asking me something specyfic.
+
+
+# HowCanIHelp
+- I am quite intelligent, i can guide you, just tell me which country interests you? You can also ask me to compare two countries.
+
+# AdaptiveCard(requestInfo)
+[Activity
+    Attachments = ${json(adaptivecountryjson(requestInfo))}
+]
+
+# AdaptiveCompare(requestInfo1)
+[Activity
+    Attachments = ${json(adaptivecomparejson(requestInfo1))}
+]
+
+# adaptivecountryjson(requestInfo)
+-```
+{
+    "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+    "type": "AdaptiveCard",
+    "version": "1.2",
+    "body": [
+        {
+            "type": "Container",
+            "items": [
+                {
+                    "type": "TextBlock",
+                    "text": "${requestInfo.country}",
+                    "size": "Large",
+                    "wrap": true
+                },
+                {
+                    "type": "TextBlock",
+                    "text": "${requestInfo.date}",
+                    "wrap": true,
+                    "spacing": "Small"
+                }
+            ]
+        },
+        {
+            "type": "Container",
+            "spacing": "None",
+            "items": [
+                {
+                    "type": "ColumnSet",
+                    "columns": [
+                        {
+                            "type": "Column",
+                            "width": "stretch",
+                            "items": [
+                                {
+                                    "type": "TextBlock",
+                                    "size": "Large",
+                                    "text": "Deaths",
+                                    "wrap": true,
+                                    "spacing": "Medium",
+                                    "separator": true
+                                },
+                                {
+                                    "type": "TextBlock",
+                                    "text": "${requestInfo.deaths} ",
+                                    "size": "Large",
+                                    "wrap": true,
+                                    "spacing": "None"
+                                },
+                                {
+                                    "type": "TextBlock",
+                                    "text": "All ${requestInfo.full_deaths}",
+                                    "spacing": "None",
+                                    "wrap": true
+                                },
+                                {
+                                    "type": "TextBlock",
+                                    "size": "Large",
+                                    "text": "Cases",
+                                    "wrap": true,
+                                    "spacing": "Medium"
+                                },
+                                {
+                                    "type": "TextBlock",
+                                    "text": "${requestInfo.cases} ",
+                                    "size": "Large",
+                                    "wrap": true,
+                                    "spacing": "None"
+                                },
+                                {
+                                    "type": "TextBlock",
+                                    "text": "All ${requestInfo.full_cases}",
+                                    "spacing": "None",
+                                    "wrap": true
+                                },
+                                {
+                                    "type": "TextBlock",
+                                    "size": "Large",
+                                    "text": "Recoveries",
+                                    "wrap": true,
+                                    "spacing": "Medium"
+                                },
+                                {
+                                    "type": "TextBlock",
+                                    "text": "${requestInfo.recoveries} ",
+                                    "size": "Large",
+                                    "wrap": true,
+                                    "spacing": "None"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "Column",
+                            "width": "auto",
+                            "items": [
+                                {
+                                    "type": "TextBlock",
+                                    "size": "Medium",
+                                    "text": "Total World",
+                                    "wrap": true
+                                },
+                                {
+                                    "type": "FactSet",
+                                    "facts": [
+                                        {
+                                            "title": "Deaths",
+                                            "value": "${requestInfo.total_deaths} "
+                                        },
+                                        {
+                                            "title": "Cases",
+                                            "value": "${requestInfo.total_cases} "
+                                        },
+                                        {
+                                            "title": "Recovered",
+                                            "value": "${requestInfo.total_recovered} "
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
+```
+
+# adaptivecomparejson(requestInfo1)
+-```
+{
+    "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+    "type": "AdaptiveCard",
+    "version": "1.2",
+    "body": [
+        {
+            "type": "Container",
+            "items": [
+                {
+                    "type": "TextBlock",
+                    "text": "${requestInfo1.date}",
+                    "wrap": true,
+                    "spacing": "Small"
+                },
+                {
+                    "type": "ColumnSet",
+                    "columns": [
+                        {
+                            "type": "Column",
+                            "width": "strech",
+                            "horizontalAlignment": "Left",
+                            "items": [
+                                {
+                                    "type": "TextBlock",
+                                    "size": "Medium",
+                                    "text": "${requestInfo1.country1}",
+                                    "wrap": true
+                                },
+                                {
+                                    "type": "FactSet",
+                                    "facts": [
+                                        {
+                                            "title": "Deaths",
+                                            "value": "${requestInfo1.deaths_c1} "
+                                        },
+                                        {
+                                            "title": "Cases",
+                                            "value": "${requestInfo1.cases_c1} "
+                                        },
+                                        {
+                                            "title": "Recovered",
+                                            "value": "${requestInfo1.recoveries_c1} "
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "type": "Column",
+                            "width": "strech",
+                            "horizontalAlignment": "Right",
+                            "items": [
+                                {
+                                    "type": "TextBlock",
+                                    "text": "${requestInfo1.country2}",
+                                    "wrap": true,
+                                    "size": "Medium"
+                                },
+                                {
+                                    "type": "FactSet",
+                                    "facts": [
+                                        {
+                                            "title": "Deaths",
+                                            "value": "${requestInfo1.deaths_c2} "
+                                        },
+                                        {
+                                            "title": "Cases",
+                                            "value": "${requestInfo1.cases_c2} "
+                                        },
+                                        {
+                                            "title": "Recovered",
+                                            "value": "${requestInfo1.recoveries_c2} "
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
+```

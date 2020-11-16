@@ -1,0 +1,125 @@
+{
+  "$kind": "Microsoft.AdaptiveDialog",
+  "$designer": {
+    "id": "tNualu",
+    "name": "CompareCountries",
+    "description": ""
+  },
+  "autoEndDialog": true,
+  "defaultResultProperty": "dialog.result",
+  "triggers": [
+    {
+      "$kind": "Microsoft.OnBeginDialog",
+      "$designer": {
+        "name": "BeginDialog",
+        "description": "",
+        "id": "izBHGY"
+      },
+      "actions": [
+        {
+          "$kind": "Microsoft.SetProperties",
+          "$designer": {
+            "id": "PVKvsJ"
+          },
+          "assignments": [
+            {
+              "property": "dialog.country1",
+              "value": "=toLower(@country1)"
+            },
+            {
+              "property": "dialog.country2",
+              "value": "=toLower(@country2)"
+            }
+          ]
+        },
+        {
+          "$kind": "Microsoft.SendActivity",
+          "$designer": {
+            "id": "R0VZDO"
+          },
+          "activity": "${SendActivity_R0VZDO()}"
+        },
+        {
+          "$kind": "Microsoft.HttpRequest",
+          "$designer": {
+            "id": "gFIcc2"
+          },
+          "method": "GET",
+          "responseType": "json",
+          "url": "https://covid-193.p.rapidapi.com/statistics?country=${dialog.country1}",
+          "headers": {
+            "x-rapidapi-key": "=\"2fcb490706msh1459686e5455786p1a97efjsnda6c10ea1435\"",
+            "x-rapidapi-host": "=\"covid-193.p.rapidapi.com\""
+          },
+          "resultProperty": "conversation.api_response_country1",
+          "contentType": "json"
+        },
+        {
+          "$kind": "Microsoft.HttpRequest",
+          "$designer": {
+            "id": "2YJmFN"
+          },
+          "method": "GET",
+          "responseType": "json",
+          "url": "https://covid-193.p.rapidapi.com/statistics?country=${dialog.country2}",
+          "headers": {
+            "x-rapidapi-key": "=\"2fcb490706msh1459686e5455786p1a97efjsnda6c10ea1435\"",
+            "x-rapidapi-host": "=\"covid-193.p.rapidapi.com\""
+          },
+          "resultProperty": "conversation.api_response_country2",
+          "contentType": "json"
+        },
+        {
+          "$kind": "Microsoft.IfCondition",
+          "$designer": {
+            "id": "sF4VY8"
+          },
+          "actions": [
+            {
+              "$kind": "Microsoft.SetProperties",
+              "$designer": {
+                "id": "hG4qRh"
+              },
+              "assignments": [
+                {
+                  "property": "conversation.requestInfo1",
+                  "value": {
+                    "date": "${conversation.api_response_country1.content.response[0].day}",
+                    "country1": "${conversation.api_response_country1.content.response[0].country}",
+                    "country2": "${conversation.api_response_country2.content.response[0].country}",
+                    "cases_c1": "${conversation.api_response_country1.content.response[0].cases.new}",
+                    "deaths_c1": "${conversation.api_response_country1.content.response[0].deaths.new}",
+                    "recoveries_c1": "${conversation.api_response_country1.content.response[0].cases.recovered}",
+                    "cases_c2": "${conversation.api_response_country2.content.response[0].cases.new}",
+                    "deaths_c2": "${conversation.api_response_country2.content.response[0].deaths.new}",
+                    "recoveries_c2": "${conversation.api_response_country2.content.response[0].cases.recovered}"
+                  }
+                }
+              ]
+            },
+            {
+              "$kind": "Microsoft.SendActivity",
+              "$designer": {
+                "id": "OHOooN"
+              },
+              "activity": "${SendActivity_OHOooN()}"
+            }
+          ],
+          "condition": "=(conversation.api_response_country1.statusCode == 200) && (conversation.api_response_country2.statusCode == 200) ",
+          "elseActions": [
+            {
+              "$kind": "Microsoft.SendActivity",
+              "$designer": {
+                "id": "KBhx2i"
+              },
+              "activity": "${SendActivity_KBhx2i()}"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "generator": "CompareCountries.lg",
+  "recognizer": "CompareCountries.lu.qna",
+  "id": "CompareCountries"
+}

@@ -1,0 +1,141 @@
+{
+  "$kind": "Microsoft.AdaptiveDialog",
+  "$designer": {
+    "id": "LDvsi7",
+    "name": "CheckCountryStatus",
+    "description": ""
+  },
+  "autoEndDialog": true,
+  "defaultResultProperty": "dialog.result",
+  "triggers": [
+    {
+      "$kind": "Microsoft.OnBeginDialog",
+      "$designer": {
+        "name": "BeginDialog",
+        "description": "",
+        "id": "FrlZ43"
+      },
+      "actions": [
+        {
+          "$kind": "Microsoft.SetProperties",
+          "$designer": {
+            "id": "ypPVVz"
+          },
+          "assignments": [
+            {
+              "property": "dialog.country",
+              "value": "=toLower(@country)"
+            }
+          ]
+        },
+        {
+          "$kind": "Microsoft.IfCondition",
+          "$designer": {
+            "id": "Y1saWX"
+          },
+          "condition": "= dialog.country != \"\"",
+          "actions": [],
+          "elseActions": [
+            {
+              "$kind": "Microsoft.TextInput",
+              "$designer": {
+                "id": "giDZ3a"
+              },
+              "disabled": false,
+              "maxTurnCount": 3,
+              "alwaysPrompt": false,
+              "allowInterruptions": false,
+              "prompt": "${TextInput_Prompt_giDZ3a()}",
+              "unrecognizedPrompt": "",
+              "invalidPrompt": "",
+              "defaultValueResponse": "",
+              "property": "dialog.country",
+              "outputFormat": "=toLower(dialog.country)"
+            }
+          ]
+        },
+        {
+          "$kind": "Microsoft.HttpRequest",
+          "$designer": {
+            "id": "jdjmuL"
+          },
+          "method": "GET",
+          "responseType": "json",
+          "url": "https://covid-193.p.rapidapi.com/statistics?country=all",
+          "headers": {
+            "x-rapidapi-key": "=\"2fcb490706msh1459686e5455786p1a97efjsnda6c10ea1435\"",
+            "x-rapidapi-host": "=\"covid-193.p.rapidapi.com\""
+          },
+          "resultProperty": "conversation.api_response_world",
+          "contentType": "json"
+        },
+        {
+          "$kind": "Microsoft.HttpRequest",
+          "$designer": {
+            "id": "WjxOAh"
+          },
+          "method": "GET",
+          "responseType": "json",
+          "url": "https://covid-193.p.rapidapi.com/statistics?country=${dialog.country}",
+          "headers": {
+            "x-rapidapi-key": "=\"2fcb490706msh1459686e5455786p1a97efjsnda6c10ea1435\"",
+            "x-rapidapi-host": "=\"covid-193.p.rapidapi.com\""
+          },
+          "resultProperty": "conversation.api_response",
+          "contentType": "json"
+        },
+        {
+          "$kind": "Microsoft.IfCondition",
+          "$designer": {
+            "id": "1CxUAg"
+          },
+          "condition": "= conversation.api_response.statusCode==200",
+          "actions": [
+            {
+              "$kind": "Microsoft.SetProperties",
+              "$designer": {
+                "id": "tPzJqa"
+              },
+              "assignments": [
+                {
+                  "property": "conversation.requestInfo",
+                  "value": {
+                    "cases": "${conversation.api_response.content.response[0].cases.new}",
+                    "deaths": "${conversation.api_response.content.response[0].deaths.new}",
+                    "recoveries": "${conversation.api_response.content.response[0].cases.recovered}",
+                    "full_deaths": "${conversation.api_response.content.response[0].deaths.total}",
+                    "full_cases": "${conversation.api_response.content.response[0].cases.total}",
+                    "date": "${conversation.api_response.content.response[0].day}",
+                    "country": "${conversation.api_response.content.response[0].country}",
+                    "total_deaths": "${conversation.api_response_world.content.response[0].cases.new}",
+                    "total_cases": "${conversation.api_response_world.content.response[0].deaths.new}",
+                    "total_recovered": "${conversation.api_response_world.content.response[0].cases.recovered}"
+                  }
+                }
+              ]
+            },
+            {
+              "$kind": "Microsoft.SendActivity",
+              "$designer": {
+                "id": "bgsWIx"
+              },
+              "activity": "${SendActivity_bgsWIx()}"
+            }
+          ],
+          "elseActions": [
+            {
+              "$kind": "Microsoft.SendActivity",
+              "$designer": {
+                "id": "QyxG02"
+              },
+              "activity": "${SendActivity_QyxG02()}"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "generator": "CheckCountryStatus.lg",
+  "recognizer": "CheckCountryStatus.lu.qna",
+  "id": "CheckCountryStatus"
+}

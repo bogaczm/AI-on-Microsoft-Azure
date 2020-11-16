@@ -1,0 +1,12 @@
+{
+    "luis": {
+        "CheckCountryStatus_en_us_lu": {
+            "appId": "026199fa-94e7-4503-b222-80045a5889c6",
+            "version": "0.1"
+        },
+        "CovidStatus_en_us_lu": {
+            "appId": "6e67ed2a-f3e0-40a6-8513-a213cd7d25bb",
+            "version": "0.5"
+        }
+    }
+}

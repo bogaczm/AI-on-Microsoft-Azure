@@ -1,0 +1,8 @@
+[import](common.lg)
+
+# SendActivity_bgsWIx()
+- ${AdaptiveCard(conversation.requestInfo)}
+# TextInput_Prompt_giDZ3a()
+- Please specify the country of interest.
+# SendActivity_QyxG02()
+- Please try again, something went wrong. Be sure to use proper name of the country.
