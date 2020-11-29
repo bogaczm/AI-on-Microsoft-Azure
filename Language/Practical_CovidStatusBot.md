@@ -43,39 +43,43 @@ From my experience it is best to use the desktop version, it is much easier for 
 
 It is best to create a new bot from scratch, but some functions are well shown in the examples section. It is valuable to look into them.
 
-
+<img src="Images/bot_from_scratch.PNG" width = 600> <img src="Images/examples.PNG" height = 600> 
 
 The welcome action is already created. Two most important pages are 'User Input' and 'Bot Responses', it is here where all definitions of actions are created.
 
-
+<img src="Images/UserInput.PNG" width = 600> 
+<img src="Images/bot_responses.PNG" width = 600> 
 
 It is a good practice to use these pages to create the placeholders for all actions, and later only use the names in the dialog trees.
 
-
+<img src="Images/placeholder.PNG"> 
 
 Inside the trigger we can not only specify the example sentences and phrases, but also other conditions for score. 
 
-``
+<img src="Images/help_score.PNG"> <img src="Images/triggerphrases.PNG"> 
+<img src="Images/trigger.PNG"> 
 
 Using the HTTP request is very similar to using request in postman or any other program (programming language). Be sure to check if the request was performed correctly - statusCode == 200. Additionally it is very important to save the requests response into internal variable otherwise it will be lost. The variable is structures in the same way as the response, so it is an object with properties.
 
-
+<img src="Images/HTTP_request_example.PNG" width = 400> <img src="Images/HTTP_request_example2.PNG" width = 400> 
+<img src="Images/200_request_check.PNG" width = 400> <img src="Images/requestResponse.PNG" width = 400> 
 
 ### Creating Luis resource
 
 LUIS doesn't work natively with Composer, it a service which needs to be activated and run in the background. Fortunately is free up to 5000 calls per month, so it is enough for this purpose. Even-though is quite useful to check the amount of used calls, to learn how much and when is used.
 
-
+<img src="Images/Metrics-luis.PNG">
 
 The Composer will ask for the generated key every time after program reset, when starting the bot.
 
-
+<img src="Images/keyLUIS.PNG">
 
 ### Create adaptive cards
 
 Adaptive cars are very useful tool for data visualization, bot seems much more advanced and better prepared, when asked data is server inside well structured card. The cards are JSON structures, which can be read and interpreted by Emulator or any other Bot serving engine. On https://adaptivecards.io/ one can find many useful examples which can be reworked into any shape.
 
-
+<img src="Images/card_samples.PNG">
 
 JSON files can be created from scratch or reworked inside the Cards designer. User data is delivered via JSON structures inside card declaration JSON the variables are written as `"${varaible}"` same variable must be later called in the user data file.
 
+<img src="Images/designer_cards.PNG">
